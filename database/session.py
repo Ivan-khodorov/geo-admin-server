@@ -1,8 +1,6 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from bot.Config import Config
+import os
 
-# Создаём асинхронный движок
-engine = create_async_engine(Config.DATABASE_URL, echo=True)
+DATABASE_URL = os.environ["DATABASE_URL"]
 
 # Асинхронная сессия
 async_session = async_sessionmaker(
