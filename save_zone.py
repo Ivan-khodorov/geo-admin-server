@@ -3,18 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from database.models import Base, CityZone, House
-from database.session import async_session
 from shapely.geometry import Polygon, Point
 import json
+import os
 import random
+
+from database.models import CityZone, House
+from database.session import async_session
 
 app = FastAPI()
 
-# Разрешаем запросы с GitHub Pages
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://ivan-khodorov.github.io"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
